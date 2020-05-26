@@ -21,4 +21,10 @@ open localhost:3000
 ```
 
 
+```bash
+# Deploy 
+docker tag resize-me:latest artemrubylearn.azurecr.io/resize-me:1
+docker push artemrubylearn.azurecr.io/resize-me
+```
+
 
