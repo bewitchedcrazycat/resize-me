@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag 'dropzone' %>
+<%= stylesheet_link_tag 'basic' %>
+
+<%= form_with(model: image, local: true) do |form| %>
+  <% if image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(image.errors.count, "error") %> prohibited this image from being saved:</h2>
+
+      <ul>
+        <% image.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <%= form.hidden_field :url %>
+  <%= form.hidden_field :content_type %>
+
+  <div id="image-dropzone" class="dropzone"></div>
+
+  <div id="upload-messages"></div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%= javascript_include_tag "images" %>
+

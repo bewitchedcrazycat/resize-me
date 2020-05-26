@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_image_path(@image) %> |
+<%= link_to 'Back', images_path %>
+
+<div>
+  <h3>Name:</h3>
+  <p><%= @image.name %></p>
+</div>
+
+
+<% if @image.processed == false %>
+  <div>
+    <h3>Generating thumbnails</h3>
+    <p>Please wait a sec or look at logs...</p>
+  </div>
+<% end %>
+
+
+<% if @image.processed == true %>
+  <div>
+    <h3>Width x Height :</h3>
+    <p><%= @image.width %> x <%= @image.height %></p>
+  </div>
+<% end %>
+
+<% if @image.processed == true %>
+  <strong>25%:</strong>
+  <p>
+    <%= image_tag("/thumbnails/p25-#{@image.url}", class: "img-fluid") %>
+  </p>
+
+  <strong>50%:</strong>
+  <p>
+    <%= image_tag("/thumbnails/p50-#{@image.url}", class: "img-fluid") %>
+  </p>
+
+  <strong>200x200:</strong>
+  <p>
+    <%= image_tag("/thumbnails/square-200x200-#{@image.url}", class: "img-fluid") %>
+  </p>
+
+  <strong>400x400:</strong>
+  <p>
+    <%= image_tag("/thumbnails/square-400x400-#{@image.url}", class: "img-fluid") %>
+  </p>
+
+  <strong>800x800:</strong>
+  <p>
+    <%= image_tag("/thumbnails/square-800x800-#{@image.url}", class: "img-fluid") %>
+  </p>
+<% end %>
+
+
+<strong>Original:</strong>
+<p>
+  <%= image_tag("/uploads/#{@image.url}", class: "img-fluid") %>
+</p>
+
