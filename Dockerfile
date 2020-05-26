@@ -1,7 +1,7 @@
 FROM ruby:2.6.6-slim
 
 RUN apt-get update && apt-get install -y build-essential gcc libc-dev \
- libmagickwand-dev libxml2-dev libxslt-dev \
+ libmagickwand-dev imagemagick libxml2-dev libxslt-dev \
  libsqlite3-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -23,6 +23,7 @@ RUN bundle install
 #
 COPY . /app
 ENV RAILS_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=yes
 
 RUN bundle exec rake db:migrate
 
